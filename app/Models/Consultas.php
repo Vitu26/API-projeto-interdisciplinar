@@ -13,6 +13,10 @@ class Consultas extends Model
         'name',
         'image',
         'data',
-        'description'
+        'description',
+        'user_id'
     ];
+    public function seller(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -84,55 +84,84 @@ class ConsultasController extends Controller
        ],200);
     }
 
+    // public function update(ConsultasStoreRequest $request, $id)
+    // {
+    //     try {
+    //         // Find product
+    //         $consultas = Consultas::find($id);
+    //         if(!$consultas){
+    //           return response()->json([
+    //             'message'=>'consultas Not Found.'
+    //           ],404);
+    //         }
+
+    //         //echo "request : $request->image";
+    //         $consultas->name = $request->name;
+    //         $consultas->data = $request->date;
+    //         $consultas->description = $request->description;
+
+    //         if($request->image) {
+
+    //             // Public storage
+    //             $storage = Storage::disk('public');
+
+    //             // Old iamge delete
+    //             if($storage->exists($consultas->image))
+    //                 $storage->delete($consultas->image);
+
+    //             // Image name
+    //             $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
+    //             $consultas->image = $imageName;
+
+    //             // Image save in public folder
+    //             $storage->put($imageName, file_get_contents($request->image));
+    //         }
+
+    //         // Update Product
+    //         $consultas->save();
+
+    //         // Return Json Response
+    //         return response()->json([
+    //             'message' => "consultas successfully updated."
+    //         ],200);
+    //     } catch (\Exception $e) {
+    //         print($e);
+    //         // Return Json Response
+    //         return response()->json([
+
+    //             'message' => "Something went really wrong!"
+    //         ],500);
+    //     }
+    // }
     public function update(ConsultasStoreRequest $request, $id)
-    {
-        try {
-            // Find product
-            $consultas = Consultas::find($id);
-            if(!$consultas){
-              return response()->json([
-                'message'=>'consultas Not Found.'
-              ],404);
-            }
-
-            //echo "request : $request->image";
-            $consultas->name = $request->name;
-            $consultas->data = $request->date;
-            $consultas->description = $request->description;
-
-            if($request->image) {
-
-                // Public storage
-                $storage = Storage::disk('public');
-
-                // Old iamge delete
-                if($storage->exists($consultas->image))
-                    $storage->delete($consultas->image);
-
-                // Image name
-                $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
-                $consultas->image = $imageName;
-
-                // Image save in public folder
-                $storage->put($imageName, file_get_contents($request->image));
-            }
-
-            // Update Product
-            $consultas->save();
-
-            // Return Json Response
-            return response()->json([
-                'message' => "consultas successfully updated."
-            ],200);
-        } catch (\Exception $e) {
-            print($e);
-            // Return Json Response
-            return response()->json([
-
-                'message' => "Something went really wrong!"
-            ],500);
+{
+    try {
+        $consultas = Consultas::find($id);
+        if (!$consultas) {
+            return response()->json(['message' => 'Consulta não encontrada.'], 404);
         }
+
+        $consultas->name = $request->name;
+        $consultas->data = $request->data; // Corrigido para $request->data
+        $consultas->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            $storage = Storage::disk('public');
+            if ($storage->exists($consultas->image)) {
+                $storage->delete($consultas->image);
+            }
+
+            $imageName = Str::random(32) . "." . $request->image->getClientOriginalExtension();
+            $consultas->image = $imageName;
+            $storage->put($imageName, file_get_contents($request->image));
+        }
+
+        $consultas->save();
+        return response()->json(['message' => 'Consulta atualizada com sucesso.'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Erro ao atualizar consulta: ' . $e->getMessage()], 500);
     }
+}
 
     public function destroy($id)
     {
