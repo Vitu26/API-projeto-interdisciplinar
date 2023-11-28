@@ -1,66 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Sobre o sistema
+Este sistema foi criado para o desafio e tinha como objetivo desenvolver um crud através da metodologia Rest que salvasse dados sobre produtos a serem armazenados numa empresa, de forma a manter uma base de dados.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Objetivos
+Uso do laravel e php
+Criar telas do CRUD
+README como guia
+Como foi feito
+Utilizando o framework Laravel foi criada a API REST que realiza o CRUD, ou seja, o back end foi feito por laravel e utilizei o React para o front end. Mas por meio das views também podemos ver um pouco de front com php, html por maio da blade;
 
-## About Laravel
+Como configurar e rodar
+Primeiro é necessario ter a instalação de um servidor feito de maneira direta através da configuração do Apache e de um banco de dados, ou através do uso do Xampp e Wamp, onde ambos fornecem os requisitos minimos, também é necessario observar que em caso de necessidade de edição o node.js também se tornará necessario tendo em vista os pacotes necessarios.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Passo 1 - Clonando o repositorio
+Realize o clone deste repositorio via git usando no seu cmd o seguinte comando:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+git clone https://github.com/Vitu26/API-projeto-interdisciplinar git clone https://github.com/Vitu26/interdisciplinar-react
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Passo 2 - Arquivo .env
+Observe que na pasta principal existe o arquivo .env.example copie o mesmo e mude para .env, na parte referente aos dados do seu banco de dados preencha com os dados do seu banco de dados e na linha 3 do .env.example insira a chave da api.
 
-## Learning Laravel
+APP_KEY=base64:wpDvSb9xaiG73H6flOsvnZZibOURwxp0uFqWbFn79gg=
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Passo 3 - Npm, Composer e php
+Agora será necessario que vc realize alguns comandos para iniciar o funcionamento
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Dentro do cmd navegue até a pasta de destino do seu projeto, iniciaremos com o composer, para inicializar sua pasta vendor use o comando:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+composer install
 
-## Laravel Sponsors
+Desta forma ele pegará todos os pacotes PHP necessarios, logo em seguida use:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+npm install
 
-### Premium Partners
+Assim que o finalizar todos os pacotes JS necessarios também estaram instalados na sua maquina, em seguida use:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+php artisan migrate
 
-## Contributing
+Para instalar o banco de dados, que se você ja configurou no seu .env sera iniciado, logo em seguida rode:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+php artisan db:seed
 
-## Code of Conduct
+Que estará inserindo alguns registros dinamicos que possam servir de guia, agora por fim use:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+npm run dev
 
-## Security Vulnerabilities
+Que ira compilar os arquivos necessarios para rodar o projeto, para executar o projeto use
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+php artisan serve
 
-## License
+Basta acessar agora o endereço http://127.0.0.1:8000 e lá vc encontrará o projeto em funcionamento
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+npm start Para iniciar o projeto react
+
+Observações
+1 - Lembre que para executar o processos acima é necessario ter as ferramentas citadas instaladas, qualquer falta de uma delas resultará num mal funcionamento do projeto
+
+2 - Em caso de perca do banco de dados também é possivel usar php artisan migrate:fresh para restaurar ao formato original
+
+3 - Para que os demais comandos do php funcionem deve-se estar executando seu servidor
